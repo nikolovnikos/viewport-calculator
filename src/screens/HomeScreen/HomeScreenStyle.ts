@@ -32,13 +32,14 @@ type StyleProps = {
 
 class HomeStyle extends ViewPortCalculatedStyles<StyleProps> {
   phoneStylesPortrait() {
+    const logoBox = this.calculator.getBox(200, 200);
     const style: StyleProps = {
       title: {
         fontSize: this.calculator.getVertical(24),
       },
       logo: {
-        width: this.calculator.getHorizontal(200),
-        height: this.calculator.getVertical(200),
+        width: logoBox.width,
+        height: logoBox.width,
         marginBottom: this.calculator.getVertical(20),
       },
       button: {
@@ -67,13 +68,14 @@ class HomeStyle extends ViewPortCalculatedStyles<StyleProps> {
     return style;
   }
   phoneStylesLandscape() {
+    const logoBox = this.calculator.getBox(150, 150);
     const style: StyleProps = {
       title: {
         fontSize: this.calculator.getVertical(26),
       },
       logo: {
-        width: this.calculator.getHorizontal(150),
-        height: this.calculator.getVertical(150),
+        width: logoBox.width,
+        height: logoBox.height,
         marginBottom: this.calculator.getVertical(10),
       },
       button: {
@@ -102,13 +104,14 @@ class HomeStyle extends ViewPortCalculatedStyles<StyleProps> {
     return style;
   }
   tabletStylesPortrait() {
+    const logoBox = this.calculator.getBox(250, 250);
     const style: StyleProps = {
       title: {
         fontSize: this.calculator.getVertical(28),
       },
       logo: {
-        width: this.calculator.getHorizontal(250),
-        height: this.calculator.getVertical(250),
+        width: logoBox.width,
+        height: logoBox.height,
         marginBottom: this.calculator.getVertical(30),
       },
       button: {
@@ -137,13 +140,14 @@ class HomeStyle extends ViewPortCalculatedStyles<StyleProps> {
     return style;
   }
   tabletStylesLandscape() {
+    const logoBox = this.calculator.getBox(300, 300);
     const style: StyleProps = {
       title: {
         fontSize: this.calculator.getVertical(28),
       },
       logo: {
-        width: this.calculator.getHorizontal(300),
-        height: this.calculator.getVertical(300),
+        width: logoBox.width,
+        height: logoBox.height,
         marginBottom: this.calculator.getVertical(30),
       },
       button: {
