@@ -66,37 +66,31 @@ export class ViewPortCalculator {
    * @param {number} horizontalValue Can be the value of any of the Horizontal units like: width, paddingLeft, paddingRight, marginLeft, marginRight, left, right of an element from the design
    *
    */
-  public getHorizontal = (horizontalValue: number): number => {
-    return this.calHorizontal(
-      horizontalValue,
-      this.orientation === 'portrait' ? this.deviceViewPort.widthP : this.deviceViewPort.widthL,
-    );
-  };
+  public getHorizontal = (horizontalValue: number): number => this.calHorizontal(
+    horizontalValue,
+    this.orientation === 'portrait' ? this.deviceViewPort.widthP : this.deviceViewPort.widthL,
+  );
 
   /**
    * Calculate proportional vertical value;
    * @param {number} verticalValue Can be the value of any of the Vertical units like: height, fontSize, paddingTop, paddingBottom, marginTop, marginBottom, top, bottom of an element from the design
    *
    */
-  public getVertical = (verticalValue: number): number => {
-    return this.calBox(
-      verticalValue,
-      verticalValue,
-      this.orientation === 'portrait' ? this.deviceViewPort.widthP : this.deviceViewPort.widthL,
-    ).height;
-  };
+  public getVertical = (verticalValue: number): number => this.calBox(
+    verticalValue,
+    verticalValue,
+    this.orientation === 'portrait' ? this.deviceViewPort.widthP : this.deviceViewPort.widthL,
+  ).height;
 
   /**
    * Calculate non proportional vertical values. Usually used when want to create full screen without scrolling.
    * @param {number} verticalValue Can be the value of any of the Vertical units like: height, fontSize, paddingTop, paddingBottom, marginTop, marginBottom, top, bottom of an element from the design
    *
    */
-  public getVerticalNotProp = (verticalValue: number): number => {
-    return this.calVertical(
-      verticalValue,
-      this.orientation === 'portrait' ? this.deviceViewPort.heightP : this.deviceViewPort.heightL,
-    );
-  };
+  public getVerticalNotProp = (verticalValue: number): number => this.calVertical(
+    verticalValue,
+    this.orientation === 'portrait' ? this.deviceViewPort.heightP : this.deviceViewPort.heightL,
+  );
 
   /**
    * Calculate proportional box using with and height
@@ -107,11 +101,9 @@ export class ViewPortCalculator {
   public getBox = (
     boxWidth: number,
     boxHeight: number,
-  ): {width: number; height: number} => {
-    return this.calBox(
-      boxWidth,
-      boxHeight,
-      this.orientation === 'portrait' ? this.deviceViewPort.widthP : this.deviceViewPort.widthL,
-    );
-  };
+  ): {width: number; height: number} => this.calBox(
+    boxWidth,
+    boxHeight,
+    this.orientation === 'portrait' ? this.deviceViewPort.widthP : this.deviceViewPort.widthL,
+  );
 }
