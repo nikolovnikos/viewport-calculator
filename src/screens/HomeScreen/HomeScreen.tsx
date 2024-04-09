@@ -6,8 +6,6 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 const HomeScreen = () => {
   const {style: homeStyles} = useHomeStyle();
 
-  console.log(homeStyles);
-
   return (
     <SafeAreaView
       edges={['right', 'bottom', 'left', 'top']}
