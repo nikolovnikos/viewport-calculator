@@ -67,10 +67,10 @@ export class ViewPortCalculator {
    *
    */
   public getHorizontal = (horizontalValue: number): number => {
-    if (this.orientation === 'portrait') {
-      return this.calHorizontal(horizontalValue, this.deviceViewPort.widthP);
-    }
-    return this.calHorizontal(horizontalValue, this.deviceViewPort.widthL);
+    return this.calHorizontal(
+      horizontalValue,
+      this.orientation === 'portrait' ? this.deviceViewPort.widthP : this.deviceViewPort.widthL,
+    );
   };
 
   /**
@@ -79,20 +79,11 @@ export class ViewPortCalculator {
    *
    */
   public getVertical = (verticalValue: number): number => {
-    if (this.orientation === 'portrait') {
-      const boxP = this.calBox(
-        verticalValue,
-        verticalValue,
-        this.deviceViewPort.widthP,
-      );
-      return boxP.height;
-    }
-    const boxL = this.calBox(
+    return this.calBox(
       verticalValue,
       verticalValue,
-      this.deviceViewPort.widthL,
-    );
-    return boxL.height;
+      this.orientation === 'portrait' ? this.deviceViewPort.widthP : this.deviceViewPort.widthL,
+    ).height;
   };
 
   /**
@@ -101,10 +92,10 @@ export class ViewPortCalculator {
    *
    */
   public getVerticalNotProp = (verticalValue: number): number => {
-    if (this.orientation === 'portrait') {
-      return this.calVertical(verticalValue, this.deviceViewPort.heightP);
-    }
-    return this.calVertical(verticalValue, this.deviceViewPort.heightL);
+    return this.calVertical(
+      verticalValue,
+      this.orientation === 'portrait' ? this.deviceViewPort.heightP : this.deviceViewPort.heightL,
+    );
   };
 
   /**
@@ -117,9 +108,10 @@ export class ViewPortCalculator {
     boxWidth: number,
     boxHeight: number,
   ): {width: number; height: number} => {
-    if (this.orientation === 'portrait') {
-      return this.calBox(boxWidth, boxHeight, this.deviceViewPort.widthP);
-    }
-    return this.calBox(boxWidth, boxHeight, this.deviceViewPort.widthL);
+    return this.calBox(
+      boxWidth,
+      boxHeight,
+      this.orientation === 'portrait' ? this.deviceViewPort.widthP : this.deviceViewPort.widthL,
+    );
   };
 }
