@@ -34,6 +34,10 @@ class HomeStyle extends ViewPortCalculatedStyles<StyleProps> {
   phoneStylesPortrait() {
     const {getBox, getVertical, getHorizontal} = this.calculator;
     const logoBox = getBox(200, 200);
+    const v10 = getVertical(10);
+    const v16 = getVertical(16);
+    const v20 = getVertical(20);
+
     const style: StyleProps = {
       title: {
         fontSize: getVertical(24),
@@ -41,25 +45,25 @@ class HomeStyle extends ViewPortCalculatedStyles<StyleProps> {
       logo: {
         width: logoBox.width,
         height: logoBox.width,
-        marginBottom: getVertical(20),
+        marginBottom: v20,
       },
       button: {
-        paddingVertical: getVertical(10),
+        paddingVertical: v10,
         paddingHorizontal: getHorizontal(20),
-        marginBottom: getVertical(20),
+        marginBottom: v20,
       },
       buttonText: {
-        fontSize: getVertical(16),
+        fontSize: v16,
       },
       infoContainer: {
         width: getHorizontal(331),
-        marginBottom: getVertical(20),
+        marginBottom: v20,
       },
       infoText: {
-        fontSize: getVertical(16),
+        fontSize: v16,
       },
       footer: {
-        paddingVertical: getVertical(10),
+        paddingVertical: v10,
         width: getHorizontal(372),
       },
       footerText: {
@@ -71,6 +75,9 @@ class HomeStyle extends ViewPortCalculatedStyles<StyleProps> {
   phoneStylesLandscape() {
     const {getBox, getVertical, getHorizontal} = this.calculator;
     const logoBox = getBox(150, 150);
+    const v10 = getVertical(10);
+    const v18 = getVertical(18);
+  
     const style: StyleProps = {
       title: {
         fontSize: getVertical(26),
@@ -78,29 +85,29 @@ class HomeStyle extends ViewPortCalculatedStyles<StyleProps> {
       logo: {
         width: logoBox.width,
         height: logoBox.height,
-        marginBottom: getVertical(10),
+        marginBottom: v10,
       },
       button: {
-        paddingVertical: getVertical(10),
+        paddingVertical: v10,
         paddingHorizontal: getHorizontal(20),
-        marginBottom: getVertical(10),
+        marginBottom: v10,
       },
       buttonText: {
-        fontSize: getVertical(18),
+        fontSize: v18,
       },
       infoContainer: {
         width: getHorizontal(640), // 80%
-        marginBottom: getVertical(10),
+        marginBottom: v10,
       },
       infoText: {
-        fontSize: getVertical(18),
+        fontSize: v18,
       },
       footer: {
-        paddingVertical: getVertical(10),
+        paddingVertical: v10,
         width: getHorizontal(720), // 90%
       },
       footerText: {
-        fontSize: getVertical(18),
+        fontSize: v18,
       },
     };
     return style;
@@ -108,6 +115,10 @@ class HomeStyle extends ViewPortCalculatedStyles<StyleProps> {
   tabletStylesPortrait() {
     const {getBox, getVertical, getHorizontal} = this.calculator;
     const logoBox = getBox(250, 250);
+    const v18 = getVertical(18);
+    const v20 = getVertical(20);
+    const v30 = getVertical(30);
+
     const style: StyleProps = {
       title: {
         fontSize: getVertical(28),
@@ -115,29 +126,29 @@ class HomeStyle extends ViewPortCalculatedStyles<StyleProps> {
       logo: {
         width: logoBox.width,
         height: logoBox.height,
-        marginBottom: getVertical(30),
+        marginBottom: v30,
       },
       button: {
-        paddingVertical: getVertical(20),
+        paddingVertical: v20,
         paddingHorizontal: getHorizontal(30),
-        marginBottom: getVertical(30),
+        marginBottom: v30,
       },
       buttonText: {
-        fontSize: getVertical(18),
+        fontSize: v18,
       },
       infoContainer: {
         width: getHorizontal(614),
-        marginBottom: getVertical(30),
+        marginBottom: v30,
       },
       infoText: {
-        fontSize: getVertical(18),
+        fontSize: v18,
       },
       footer: {
-        paddingVertical: getVertical(20),
+        paddingVertical: v20,
         width: getHorizontal(691),
       },
       footerText: {
-        fontSize: getVertical(20),
+        fontSize: v20,
       },
     };
     return style;
@@ -145,6 +156,10 @@ class HomeStyle extends ViewPortCalculatedStyles<StyleProps> {
   tabletStylesLandscape() {
     const {getBox, getVertical, getHorizontal} = this.calculator;
     const logoBox = getBox(300, 300);
+    const v18 = getVertical(18);
+    const v20 = getVertical(20);
+    const v30 = getVertical(30);
+
     const style: StyleProps = {
       title: {
         fontSize: getVertical(28),
@@ -152,29 +167,29 @@ class HomeStyle extends ViewPortCalculatedStyles<StyleProps> {
       logo: {
         width: logoBox.width,
         height: logoBox.height,
-        marginBottom: getVertical(30),
+        marginBottom: v30,
       },
       button: {
-        paddingVertical: getVertical(20),
+        paddingVertical: v20,
         paddingHorizontal: getHorizontal(30),
-        marginBottom: getVertical(30),
+        marginBottom: v30,
       },
       buttonText: {
-        fontSize: getVertical(18),
+        fontSize: v18,
       },
       infoContainer: {
         width: getHorizontal(819),
-        marginBottom: getVertical(30),
+        marginBottom: v30,
       },
       infoText: {
-        fontSize: getVertical(18),
+        fontSize: v18,
       },
       footer: {
-        paddingVertical: getVertical(20),
+        paddingVertical: v20,
         width: getHorizontal(921),
       },
       footerText: {
-        fontSize: getVertical(20),
+        fontSize: v20,
       },
     };
     return style;
