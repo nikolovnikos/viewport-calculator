@@ -30,3 +30,8 @@ export type SafeAreaInsetsType = {
   left: number;
   right: number;
 };
+
+export type BoxType = {
+  w: number;
+  h: number;
+}

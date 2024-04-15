@@ -31,16 +31,16 @@ type StyleProps = {
 };
 
 class HomeStyle extends ViewPortCalculatedStyles<StyleProps> {
-  phoneStylesPortrait() {
+  calculatedStyles() {
     const {getBox, getVertical, getHorizontal} = this.calculator;
-    const logoBox = getBox(200, 200);
-    const v10 = getVertical(10);
-    const v16 = getVertical(16);
-    const v20 = getVertical(20);
+    const logoBox = getBox({w: 200, h: 200}, {w: 150, h: 150}, {w: 250, h: 250}, {w: 300, h: 300});
+    const v20 = getVertical(20, 10, 30, 30);
+    const v10 = getVertical(10, 10, 20, 20);
+    const v16 = getVertical(16, 14, 18, 18);
 
     const style: StyleProps = {
       title: {
-        fontSize: getVertical(24),
+        fontSize: getVertical(24, 24, 28, 28),
       },
       logo: {
         width: logoBox.width,
@@ -49,14 +49,14 @@ class HomeStyle extends ViewPortCalculatedStyles<StyleProps> {
       },
       button: {
         paddingVertical: v10,
-        paddingHorizontal: getHorizontal(20),
+        paddingHorizontal: getHorizontal(20, 20, 30, 30),
         marginBottom: v20,
       },
       buttonText: {
         fontSize: v16,
       },
       infoContainer: {
-        width: getHorizontal(331),
+        width: getHorizontal(331, 640, 614, 819),
         marginBottom: v20,
       },
       infoText: {
@@ -64,132 +64,10 @@ class HomeStyle extends ViewPortCalculatedStyles<StyleProps> {
       },
       footer: {
         paddingVertical: v10,
-        width: getHorizontal(372),
+        width: getHorizontal(372, 720, 691, 921),
       },
       footerText: {
-        fontSize: getVertical(18),
-      },
-    };
-    return style;
-  }
-  phoneStylesLandscape() {
-    const {getBox, getVertical, getHorizontal} = this.calculator;
-    const logoBox = getBox(150, 150);
-    const v10 = getVertical(10);
-    const v18 = getVertical(18);
-  
-    const style: StyleProps = {
-      title: {
-        fontSize: getVertical(26),
-      },
-      logo: {
-        width: logoBox.width,
-        height: logoBox.height,
-        marginBottom: v10,
-      },
-      button: {
-        paddingVertical: v10,
-        paddingHorizontal: getHorizontal(20),
-        marginBottom: v10,
-      },
-      buttonText: {
-        fontSize: v18,
-      },
-      infoContainer: {
-        width: getHorizontal(640), // 80%
-        marginBottom: v10,
-      },
-      infoText: {
-        fontSize: v18,
-      },
-      footer: {
-        paddingVertical: v10,
-        width: getHorizontal(720), // 90%
-      },
-      footerText: {
-        fontSize: v18,
-      },
-    };
-    return style;
-  }
-  tabletStylesPortrait() {
-    const {getBox, getVertical, getHorizontal} = this.calculator;
-    const logoBox = getBox(250, 250);
-    const v18 = getVertical(18);
-    const v20 = getVertical(20);
-    const v30 = getVertical(30);
-
-    const style: StyleProps = {
-      title: {
-        fontSize: getVertical(28),
-      },
-      logo: {
-        width: logoBox.width,
-        height: logoBox.height,
-        marginBottom: v30,
-      },
-      button: {
-        paddingVertical: v20,
-        paddingHorizontal: getHorizontal(30),
-        marginBottom: v30,
-      },
-      buttonText: {
-        fontSize: v18,
-      },
-      infoContainer: {
-        width: getHorizontal(614),
-        marginBottom: v30,
-      },
-      infoText: {
-        fontSize: v18,
-      },
-      footer: {
-        paddingVertical: v20,
-        width: getHorizontal(691),
-      },
-      footerText: {
-        fontSize: v20,
-      },
-    };
-    return style;
-  }
-  tabletStylesLandscape() {
-    const {getBox, getVertical, getHorizontal} = this.calculator;
-    const logoBox = getBox(300, 300);
-    const v18 = getVertical(18);
-    const v20 = getVertical(20);
-    const v30 = getVertical(30);
-
-    const style: StyleProps = {
-      title: {
-        fontSize: getVertical(28),
-      },
-      logo: {
-        width: logoBox.width,
-        height: logoBox.height,
-        marginBottom: v30,
-      },
-      button: {
-        paddingVertical: v20,
-        paddingHorizontal: getHorizontal(30),
-        marginBottom: v30,
-      },
-      buttonText: {
-        fontSize: v18,
-      },
-      infoContainer: {
-        width: getHorizontal(819),
-        marginBottom: v30,
-      },
-      infoText: {
-        fontSize: v18,
-      },
-      footer: {
-        paddingVertical: v20,
-        width: getHorizontal(921),
-      },
-      footerText: {
-        fontSize: v20,
+        fontSize: getVertical(18, 16, 20, 20),
       },
     };
     return style;

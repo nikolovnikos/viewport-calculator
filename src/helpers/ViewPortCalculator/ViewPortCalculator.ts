@@ -3,6 +3,8 @@ import {
   OrientationType,
   SafeAreaFrameType,
   SafeAreaInsetsType,
+  DeviceType,
+  BoxType
 } from './types';
 
 export class ViewPortCalculator {
@@ -10,13 +12,15 @@ export class ViewPortCalculator {
   private orientation: OrientationType = 'portrait';
   private widthFrame: number = 0;
   private heightFrame: number = 0;
+  private readonly deviceType: DeviceType;
 
   /**
    *
    * @param {deviceViewPort} deviceViewPort Current device ViewPort in portrait and landscape used in the design
    *
    */
-  constructor(deviceViewPort: DeviceViewPortType) {
+  constructor(deviceViewPort: DeviceViewPortType, deviceType: DeviceType) {
+    this.deviceType = deviceType;
     this.deviceViewPort = deviceViewPort;
   }
 
@@ -61,49 +65,104 @@ export class ViewPortCalculator {
     return {width: w, height: h};
   };
 
-  /**
-   * Calculate proportional horizontal value
-   * @param {number} horizontalValue Can be the value of any of the Horizontal units like: width, paddingLeft, paddingRight, marginLeft, marginRight, left, right of an element from the design
-   *
-   */
-  public getHorizontal = (horizontalValue: number): number => this.calHorizontal(
-    horizontalValue,
-    this.orientation === 'portrait' ? this.deviceViewPort.widthP : this.deviceViewPort.widthL,
-  );
+  private readonly getDesignValue = (
+    valuePhoneP: number,
+    valuePhoneL?: number,
+    valueTabletP?: number,
+    valueTabletL?: number,
+  ) => {
+    let value: number;
+    if (this.deviceType === 'phone') {
+      value = this.orientation === 'portrait' ? valuePhoneP : (valuePhoneL ?? valuePhoneP);
+    } else {
+      value = this.orientation === 'portrait' ? (valueTabletP ?? valuePhoneP) : (valueTabletL ?? (valueTabletP ?? valuePhoneP));
+    }
+    return value;
+  };
 
   /**
-   * Calculate proportional vertical value;
-   * @param {number} verticalValue Can be the value of any of the Vertical units like: height, fontSize, paddingTop, paddingBottom, marginTop, marginBottom, top, bottom of an element from the design
-   *
+   * Calculate proportional horizontal value.
+   * Can be the value of any of the horizontal units like: width, paddingLeft, paddingRight, marginLeft, marginRight, left, right of an element from the design
+   * @param {number} valuePhoneP horizontal unit from the phone portrait design
+   * @param {number} valuePhoneL horizontal unit from the phone landscape design
+   * @param {number} valueTabletP horizontal unit from the tablet portrait design
+   * @param {number} valueTabletL horizontal unit from the tablet landscape design
    */
-  public getVertical = (verticalValue: number): number => this.calBox(
-    verticalValue,
-    verticalValue,
-    this.orientation === 'portrait' ? this.deviceViewPort.widthP : this.deviceViewPort.widthL,
-  ).height;
+  public getHorizontal = (
+    valuePhoneP: number,
+    valuePhoneL?: number,
+    valueTabletP?: number,
+    valueTabletL?: number,
+  ): number => {
+    return this.calHorizontal(
+      this.getDesignValue(valuePhoneP, valuePhoneL, valueTabletP, valueTabletL),
+      this.orientation === 'portrait' ? this.deviceViewPort.widthP : this.deviceViewPort.widthL,
+    )
+  }
+  /**
+   * Calculate non proportional vertical values.
+   * Can be the used for any of the vertical units like: height, fontSize, paddingTop, paddingBottom, marginTop, marginBottom, top, bottom of an element from the design
+   * @param {number} valuePhoneP vertical unit from the phone portrait design
+   * @param {number} valuePhoneL vertical unit from the phone landscape design
+   * @param {number} valueTabletP vertical unit from the tablet portrait design
+   * @param {number} valueTabletL vertical unit from the tablet landscape design
+   */
+  public getVertical = (
+    valuePhoneP: number,
+    valuePhoneL?: number,
+    valueTabletP?: number,
+    valueTabletL?: number,
+  ) : number => {
+    const value = this.getDesignValue(valuePhoneP, valuePhoneL, valueTabletP, valueTabletL)
+    return this.calBox(
+      value,
+      value,
+      this.orientation === 'portrait' ? this.deviceViewPort.widthP : this.deviceViewPort.widthL,
+    ).height;
+  }
 
   /**
    * Calculate non proportional vertical values. Usually used when want to create full screen without scrolling.
-   * @param {number} verticalValue Can be the value of any of the Vertical units like: height, fontSize, paddingTop, paddingBottom, marginTop, marginBottom, top, bottom of an element from the design
-   *
+   * Can be the used for any of the vertical units like: height, fontSize, paddingTop, paddingBottom, marginTop, marginBottom, top, bottom of an element from the design
+   * @param {number} valuePhoneP vertical unit from the phone portrait design
+   * @param {number} valuePhoneL vertical unit from the phone landscape design
+   * @param {number} valueTabletP vertical unit from the tablet portrait design
+   * @param {number} valueTabletL vertical unit from the tablet landscape design
    */
-  public getVerticalNotProp = (verticalValue: number): number => this.calVertical(
-    verticalValue,
-    this.orientation === 'portrait' ? this.deviceViewPort.heightP : this.deviceViewPort.heightL,
-  );
+  public getVerticalNotProp = (
+    valuePhoneP: number,
+    valuePhoneL?: number,
+    valueTabletP?: number,
+    valueTabletL?: number,
+  ): number => {
+    return this.calVertical(
+      this.getDesignValue(valuePhoneP, valuePhoneL, valueTabletP, valueTabletL),
+      this.orientation === 'portrait' ? this.deviceViewPort.heightP : this.deviceViewPort.heightL,
+    )
+  }
 
   /**
-   * Calculate proportional box using with and height
-   * @param {number} boxWidth width of box from the design
-   * @param {number} boxHeight height of box from the design
-   *
+   * Calculate proportional box using with and height from the designs.
+   * @param {BoxType} valuePhoneP width and hight of the box from the phone portrait design
+   * @param {BoxType} valuePhoneL width and hight of the box from the phone landscape design
+   * @param {BoxType} valuePhoneL width and hight of the box from the tablet portrait design
+   * @param {BoxType} valuePhoneL width and hight of the box from the tablet landscape design
    */
   public getBox = (
-    boxWidth: number,
-    boxHeight: number,
-  ): {width: number; height: number} => this.calBox(
-    boxWidth,
-    boxHeight,
-    this.orientation === 'portrait' ? this.deviceViewPort.widthP : this.deviceViewPort.widthL,
-  );
+    valuePhoneP: BoxType,
+    valuePhoneL?: BoxType,
+    valueTabletP?: BoxType,
+    valueTabletL?: BoxType,
+  ): {width: number; height: number} => {
+    let box: BoxType;
+    if (this.deviceType === 'phone') {
+      box = this.orientation === 'portrait' ? valuePhoneP : (valuePhoneL ?? valuePhoneP);
+    } else {
+      box = this.orientation === 'portrait' ? (valueTabletP ?? valuePhoneP) : (valueTabletL ?? (valueTabletP ?? valuePhoneP));
+    }
+    return this.calBox(
+      box.w,
+      box.h,
+      this.orientation === 'portrait' ? this.deviceViewPort.widthP : this.deviceViewPort.widthL);
+  };
 }
