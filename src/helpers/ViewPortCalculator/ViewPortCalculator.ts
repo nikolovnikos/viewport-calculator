@@ -17,6 +17,7 @@ export class ViewPortCalculator {
   /**
    *
    * @param {deviceViewPort} deviceViewPort Current device ViewPort in portrait and landscape used in the design
+   * @param {deviceType} deviceType type of the current device (phone or tablet)
    *
    */
   constructor(deviceViewPort: DeviceViewPortType, deviceType: DeviceType) {
@@ -35,8 +36,6 @@ export class ViewPortCalculator {
     this.heightFrame = height - (top + bottom);
     this.widthFrame = width - (left + right);
   };
-
-  public getOrientation = () => this.orientation;
 
   private readonly calHorizontal = (
     value: number,
