@@ -31,7 +31,4 @@ export type SafeAreaInsetsType = {
   right: number;
 };
 
-export type BoxType = {
-  w: number;
-  h: number;
-}
+export type BoxType = [number, number];

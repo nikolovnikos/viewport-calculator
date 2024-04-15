@@ -143,26 +143,26 @@ export class ViewPortCalculator {
 
   /**
    * Calculate proportional box using with and height from the designs.
-   * @param {BoxType} valuePhoneP width and hight of the box from the phone portrait design
-   * @param {BoxType} valuePhoneL width and hight of the box from the phone landscape design
-   * @param {BoxType} valuePhoneL width and hight of the box from the tablet portrait design
-   * @param {BoxType} valuePhoneL width and hight of the box from the tablet landscape design
+   * @param {BoxType} boxPhoneP width and hight of the box from the phone portrait design
+   * @param {BoxType} boxPhoneL width and hight of the box from the phone landscape design
+   * @param {BoxType} boxTabletP width and hight of the box from the tablet portrait design
+   * @param {BoxType} boxTabletL width and hight of the box from the tablet landscape design
    */
   public getBox = (
-    valuePhoneP: BoxType,
-    valuePhoneL?: BoxType,
-    valueTabletP?: BoxType,
-    valueTabletL?: BoxType,
+    boxPhoneP: BoxType,
+    boxPhoneL?: BoxType,
+    boxTabletP?: BoxType,
+    boxTabletL?: BoxType,
   ): {width: number; height: number} => {
     let box: BoxType;
     if (this.deviceType === 'phone') {
-      box = this.orientation === 'portrait' ? valuePhoneP : (valuePhoneL ?? valuePhoneP);
+      box = this.orientation === 'portrait' ? boxPhoneP : (boxPhoneL ?? boxPhoneP);
     } else {
-      box = this.orientation === 'portrait' ? (valueTabletP ?? valuePhoneP) : (valueTabletL ?? (valueTabletP ?? valuePhoneP));
+      box = this.orientation === 'portrait' ? (boxTabletP ?? boxPhoneP) : (boxTabletL ?? (boxTabletP ?? boxPhoneP));
     }
     return this.calBox(
-      box.w,
-      box.h,
+      box[0],
+      box[1],
       this.orientation === 'portrait' ? this.deviceViewPort.widthP : this.deviceViewPort.widthL);
   };
 }

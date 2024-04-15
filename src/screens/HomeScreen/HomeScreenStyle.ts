@@ -33,7 +33,7 @@ type StyleProps = {
 class HomeStyle extends ViewPortCalculatedStyles<StyleProps> {
   calculatedStyles() {
     const {getBox, getVertical, getHorizontal} = this.calculator;
-    const logoBox = getBox({w: 200, h: 200}, {w: 150, h: 150}, {w: 250, h: 250}, {w: 300, h: 300});
+    const logoBox = getBox([200, 200], [150, 150], [250, 250], [300, 300]);
     const v20 = getVertical(20, 10, 30, 30);
     const v10 = getVertical(10, 10, 20, 20);
     const v16 = getVertical(16, 14, 18, 18);
